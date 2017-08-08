@@ -1,4 +1,3 @@
-/* Set preset so we can use es6 */
 {
   "presets": ["es2015"]
 }

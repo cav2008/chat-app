@@ -13,9 +13,26 @@ import http from 'http';
 import path from 'path';
 
 /**
- * Main Server class listening to port 8000
+ * Main Server class listening to port 8000.
+ * We missed out 'export default' key words because we do not want other modules to be able
+ * to import this class.
+ * We want to limit the potential of another Server instance being created. Therefore you can not
+ * export the Server class.
  */
-export default class Server {
+class Server {
+
+  /**
+   * Static variable belong to the class rather than the instance.
+   * The value is the same for every instance of it.
+   * For example it is good for counting the amount of times the class has been instantiated.
+   */
+  static instance = null;
+
+  constructor() {
+    this.makeApp();
+    this.makeServer();
+    this.listen();
+  }
 
   /**
    * Create only a single instance of the server. (singleton design pattern)
@@ -23,17 +40,31 @@ export default class Server {
    * of it. Call it straight without making instance of it.
    * Since we only use the Server class to create a server it make more sense
    * for it to be a static method.
+   * This is NOT a fully singleton design pattern because you can still add 'new Server()' to
+   * create a new server instance in this file.
    */
   static createServer() {
-    if (!this.app) {
-      this.app = express();
-      this.server = http.Server(this.app);
-
-      this.server.listen(8000);
-      console.log('Listening at http://localhost:8000');
+    if (!Server.instance) {
+      Server.instance = new Server();
     }
+    return Server.instance();
+  }
+
+   // We break down the contructor into different methods because it can get large later on.
+  makeApp() {
+    this.app = express();
+  }
+
+  makeServer() {
+    this.server = http.Server(this.app);
+  }
+
+  listen() {
+    this.server.listen(8000);
   }
 }
 
-// Make instance of Server object
+// Call createServer static method
 Server.createServer();
+
+
