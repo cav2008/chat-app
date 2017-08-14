@@ -20,11 +20,12 @@ import path from 'path';
  * export the Server class.
  */
 class Server {
-
   /**
    * Static variable belong to the class rather than the instance.
    * The value is the same for every instance of it.
    * For example it is good for counting the amount of times the class has been instantiated.
+   * Need to use Babel preset stage-0, presets include are a set of certain plugins.
+   * We can install a single Babel plugin or a set of plugins called preset.
    */
   static instance = null;
 
@@ -47,7 +48,7 @@ class Server {
     if (!Server.instance) {
       Server.instance = new Server();
     }
-    return Server.instance();
+    return Server.instance;
   }
 
    // We break down the contructor into different methods because it can get large later on.
@@ -66,5 +67,3 @@ class Server {
 
 // Call createServer static method
 Server.createServer();
-
-
