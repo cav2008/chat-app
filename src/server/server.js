@@ -11,6 +11,7 @@
 import express from 'express';
 import http from 'http';
 import path from 'path';
+import routes from './routes';
 
 /**
  * Main Server class listening to port 8000.
@@ -61,6 +62,8 @@ class Server {
   }
 
   listen() {
+    this.app.use('/', routes);
+
     this.server.listen(8000);
   }
 }
