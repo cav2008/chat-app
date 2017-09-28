@@ -61,6 +61,7 @@ class Server {
   }
 
   listen() {
+    console.log('listening on localhost:8000');
     this.server.listen(8000);
   }
 }
