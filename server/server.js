@@ -11,6 +11,7 @@
 import express from 'express';
 import http from 'http';
 import path from 'path';
+import { ROOT_DIR, PUBLIC_DIR } from './config/config';
 
 /**
  * Main Server class listening to port 8000.
@@ -33,6 +34,7 @@ class Server {
     this.makeApp();
     this.makeServer();
     this.listen();
+    this.fileServe();
   }
 
   /**
@@ -63,6 +65,11 @@ class Server {
   listen() {
     console.log('listening on localhost:8000');
     this.server.listen(8000);
+  }
+
+  // frontend built files to serve to client
+  fileServe() {
+    this.app.use(express.static(PUBLIC_DIR));
   }
 }
 
