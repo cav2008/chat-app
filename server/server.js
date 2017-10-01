@@ -11,6 +11,8 @@
 import express from 'express';
 import http from 'http';
 import path from 'path';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpack from 'webpack';
 import { ROOT_DIR, PUBLIC_DIR } from './config/config';
 
 /**
@@ -67,9 +69,28 @@ class Server {
     this.server.listen(8000);
   }
 
-  // frontend built files to serve to client
+  /**
+   * Serving frontend code without prebuilding it first hand.
+   * Using webpackDevMiddleware to compile code when we need it.
+   * This should be only used in development mode.
+   * This way is just of using the webpack-dev-server.
+   */
   fileServe() {
-    this.app.use(express.static(PUBLIC_DIR));
+    // Pass webpack configs to the middleware.
+    this.app.use(webpackMiddleware(webpack({
+      entry: path.join(ROOT_DIR, './client/src/app.js'),
+      output: {
+        path: '/',
+        filename: 'app.js'
+      }
+    }), {
+      publicPath: '/assets/'
+    }));
+
+    // We need to serve the initial index.html file.
+    this.app.get('*', function response(req, res) {
+      res.sendFile(path.join(ROOT_DIR, './client/index.html'));
+    });
   }
 }
 
