@@ -17,5 +17,8 @@
     "nodemon": "^1.11.0",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0"
+  },
+  "dependencies": {
+    "babel-loader": "^7.1.2"
   }
 }

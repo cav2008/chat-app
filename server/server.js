@@ -11,9 +11,8 @@
 import express from 'express';
 import http from 'http';
 import path from 'path';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpack from 'webpack';
-import { ROOT_DIR, PUBLIC_DIR } from './config/config';
+import WebpackMiddleware from './middleware/webpack-middleware/webpack-middleware';
+// import { ROOT_DIR, PUBLIC_DIR } from './config/config';
 
 /**
  * Main Server class listening to port 8000.
@@ -77,20 +76,25 @@ class Server {
    */
   fileServe() {
     // Pass webpack configs to the middleware.
-    this.app.use(webpackMiddleware(webpack({
-      entry: path.join(ROOT_DIR, './client/src/app.js'),
-      output: {
-        path: '/',
-        filename: 'app.js'
-      }
-    }), {
-      publicPath: '/assets/'
-    }));
-
-    // We need to serve the initial index.html file.
-    this.app.get('*', function response(req, res) {
-      res.sendFile(path.join(ROOT_DIR, './client/index.html'));
-    });
+    // this.app.use(webpackMiddleware(webpack({
+    //   entry: path.join(ROOT_DIR, './client/src/app.js'),
+    //   output: {
+    //     path: '/',
+    //     filename: 'app.js'
+    //   },
+    //   module: {
+    //     rules: [
+    //       { test: /\.js$/, loader: 'babel-loader', exclude: [/node_modules/] },
+    //       { test: /\.jsx$/, loader: 'babel-loader', exclude: [/node_modules/] }
+    //     ]
+    //   },
+    //   resolve: {
+    //     modules: ['node_modules']
+    //   }
+    // }), {
+    //   publicPath: '/assets/'
+    // }));
+    new WebpackMiddleware(this.app);
   }
 }
 
