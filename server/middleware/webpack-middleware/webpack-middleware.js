@@ -1,4 +1,5 @@
 import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
 import path from 'path';
 import { ROOT_DIR, PUBLIC_DIR } from '../../config/config';
@@ -7,7 +8,6 @@ import webpackConfig from '../../../client/webpack.config';
 export default class WebpackMiddleware {
   constructor(server, buildType = 'development') {
     this.setAppInstance(server);
-
     this.useWebpackMiddleware(buildType)
   }
 
@@ -24,11 +24,17 @@ export default class WebpackMiddleware {
   }
 
   developmentWebpack() {
-    this.app.use(webpackDevMiddleware(webpack(webpackConfig),
+    const compiler = webpack(webpackConfig);
+
+    // Start up webpack-dev-middleware
+    this.app.use(webpackDevMiddleware(compiler,
       {
         publicPath: '/'
       }
     ));
+
+    // Start up webpack-hot-middleware
+    this.app.use(webpackHotMiddleware(compiler));
 
     // We need to serve the initial index.html file.
     this.app.get('*', function response(req, res) {

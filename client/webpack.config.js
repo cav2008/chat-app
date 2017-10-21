@@ -3,9 +3,11 @@ const webpack = require('webpack');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
-  entry: {
-    app: './index.js'
-  },
+  entry: [
+    // We need this line to start webpack-hot-middleware
+    'webpack-hot-middleware/client',
+    './index.js'
+  ],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
@@ -19,5 +21,9 @@ module.exports = {
   },
   resolve: {
     modules: ['node_modules']
-  }
+  },
+  plugins: [
+    // Adding webpack-hot-middleware plugin, we need to install webpack-hot-middleware to client folder.
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
