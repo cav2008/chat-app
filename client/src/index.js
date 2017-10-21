@@ -2,16 +2,16 @@
 import 'react-hot-loader/patch';
 import React from 'react';
 import ReactDom from 'react-dom';
-import { ReactHotContainer } from 'react-hot-loader';
+import { AppContainer } from 'react-hot-loader';
 
 import App from './components/app'
 
 const render = Component => {
   ReactDom.render(
     // We need to wrap the React hot reloader component around our root component
-    <ReactHotContainer>
+    <AppContainer>
       <Component />
-    </ReactHotContainer>,
+    </AppContainer>,
     document.getElementById('app')
   );
 }

@@ -26,7 +26,7 @@ export default class WebpackMiddleware {
   developmentWebpack() {
     this.app.use(webpackDevMiddleware(webpack(webpackConfig),
       {
-        publicPath: '/dist'
+        publicPath: '/'
       }
     ));
 
