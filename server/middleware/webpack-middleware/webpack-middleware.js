@@ -1,9 +1,10 @@
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpack from 'webpack';
+import express from 'express';
 import path from 'path';
 import { ROOT_DIR, PUBLIC_DIR } from '../../config/config';
-import webpackConfig from '../../../client/webpack.config';
+import webpackConfig from '../../../client/webpack.dev.config';
 
 export default class WebpackMiddleware {
   constructor(server, buildType = 'development') {
@@ -43,8 +44,6 @@ export default class WebpackMiddleware {
   }
 
   productionWebpack() {
-    this.app.use(webpack(webpackConfig));
-
     // Serving frontend code the prebuilt way.
     this.app.use(express.static(PUBLIC_DIR));
   }
