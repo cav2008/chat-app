@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import express from 'express';
 import path from 'path';
 import { ROOT_DIR, PUBLIC_DIR } from '../../config/config';
-import webpackConfig from '../../../client/webpack.dev.config';
+import webpackConfig from '../../../../client/webpack.dev.config';
 
 export default class WebpackMiddleware {
   constructor(server, buildType = 'development') {

@@ -32,10 +32,18 @@ class Server {
   static instance = null;
 
   constructor() {
+    this.getBuildType();
     this.makeApp();
     this.makeServer();
     this.listen();
     this.fileServe();
+  }
+
+  /**
+   * Gets the build type from argument passed by the command line npm script.
+   */
+  getBuildType() {
+    this.buildType = process.argv[2] ? process.argv[2].split('-').join('') : 'development';
   }
 
   /**
@@ -94,7 +102,7 @@ class Server {
     // }), {
     //   publicPath: '/assets/'
     // }));
-    new WebpackMiddleware(this.app);
+    new WebpackMiddleware(this.app, this.buildType);
   }
 }
 
