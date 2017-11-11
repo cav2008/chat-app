@@ -11,18 +11,18 @@ module.exports = {
   // ],
   // This is entry way if using HtmlWebpackPlugin to make index.html file.
   entry: {
-    app: './index.jsx'
+    app: './index.jsx',
   },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: 'app.bundle.js'
+    filename: 'app.bundle.js',
   },
   module: {
     rules: [
       { test: /\.js$/, loader: 'babel-loader', exclude: [/node_modules/] },
       { test: /\.jsx$/, loader: 'babel-loader', exclude: [/node_modules/] }
-    ]
+    ],
   },
   resolve: {
     modules: ['node_modules'],
@@ -34,7 +34,7 @@ module.exports = {
     // we need to install webpack-hot-middleware to client folder.
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html')
-    })
-  ]
-}
+      template: path.resolve(__dirname, 'index.html'),
+    }),
+  ],
+};
