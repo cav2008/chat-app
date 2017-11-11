@@ -1,0 +1,19 @@
+{
+  // Extends the base configurations of airbnb.
+  "extends": "airbnb",
+  // Parser is for the js language you want to use. Default is ES5.
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false
+  },
+  // Env allows specific global variables to be used such as window.document.
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  // Rules sets what eslint should warn, error or do nothing about. 0 nothing, 1 warn, 2 error
+  "rules": {}
+}
