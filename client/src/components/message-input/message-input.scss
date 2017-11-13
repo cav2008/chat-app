@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+.message-input {
+  background-color: $gray;
+  border-radius: 10px;
+  box-shadow: 0px 3px 0px $shadowGray;
+  padding: 20px;
+}
+
+.message-input__textbox {
+  border: none;
+  border-radius: 5px;
+  width: 70%;
+  height: 44px;
+  font-size: 21px;
+  padding: 0 10px;
+  color: $black;
+}
+
+.message-input__send-btn {
+  background-color: $pink;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 3px 0px #e28fb8;
+  color: $white;
+  float: right;
+  outline: none;
+  padding: 10px 20px;
+
+  &:hover {
+    color: $white;
+    cursor: pointer;
+  }
+
+  &:active {
+    color: white;
+    box-shadow: 0px -3px 0px #944d70;
+    margin-top: 3px;
+  }
+}

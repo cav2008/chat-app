@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { AppContainer } from 'react-hot-loader'; // This is only for hot reload CLI
 
-import App from './components/app';
+import App from './components/app/app';
 
 const render = (Component) => {
   ReactDom.render(
@@ -24,5 +24,5 @@ render(App);
  * This is important we need to tell hot reload what component to reload.
  */
 if (module.hot) {
-  module.hot.accept('./components/app', () => { render(App); });
+  module.hot.accept('./components/app/app', () => { render(App); });
 }
