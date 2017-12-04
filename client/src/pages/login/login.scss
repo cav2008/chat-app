@@ -1,0 +1,11 @@
+@import '../../styles/styles.scss';
+
+.login-container {
+  @include centerBoth;
+  top: 30%;
+  width: 50%;
+  border: 7px solid $gray;
+  border-radius: 5px;
+  padding: 60px;
+  text-align: center;
+}

@@ -1,0 +1,44 @@
+// Fonts
+@mixin fontRegular {
+  font-family: Sans-Serif;
+  font-weight: normal;
+}
+
+@mixin fontLight {
+  font-family: Sans-Serif;
+  font-weight: lighter;
+}
+
+@mixin regularParagraphText {
+  color: $black;
+  font-size: 18px;
+  margin: 10px 0;
+  @include fontRegular;
+}
+
+@mixin regularTitleText {
+  color: $black;
+  font-size: 32px;
+  margin: 20px 0;
+  @include fontLight;
+}
+
+// Utilities
+@mixin centerHorizontal {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin centerVertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin centerBoth {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

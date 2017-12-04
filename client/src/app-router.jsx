@@ -5,14 +5,14 @@ import { HashRouter, Route } from 'react-router-dom';
 import Chat from './pages/chat/chat';
 import Login from './pages/login/login';
 
-import './styles/styles.scss';
+import './styles/global.scss';
 
 // Main app component
 // Stateless function, benefits are less code and is faster than classes.
 // Use stateless function if you don't need to have React life cycle or constructor methods.
 const AppRouter = () => (
   <HashRouter>
-    <div>
+    <div className="page">
       <Route exact path="/" component={Login} />
       <Route path="/chat" component={Chat} />
     </div>

@@ -15,5 +15,7 @@
     "es6": true
   },
   // Rules sets what eslint should warn, error or do nothing about. 0 nothing, 1 warn, 2 error
-  "rules": {}
+  "rules": {
+    "react/forbid-prop-types": "off"
+  }
 }

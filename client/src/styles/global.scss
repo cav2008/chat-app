@@ -1,0 +1,18 @@
+@import './styles.scss';
+
+// Body styles
+.chat-app {
+  background-color: $lightGray;
+  padding: 30px;
+}
+
+// Root dom style
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+// Root component style
+.page {
+  flex: 1 1 auto;
+}
