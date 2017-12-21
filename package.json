@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/cav2008/chat-app/issues"
   },
-  "homepage": "https://github.com/cav2008/chat-app#readme"
+  "homepage": "https://github.com/cav2008/chat-app#readme",
+  "dependencies": {}
 }

@@ -11,18 +11,20 @@ const Button = (props) => {
   );
 
   return (
-    <button className={btnClass}>{props.text}</button>
+    <button className={btnClass} onClick={props.click}>{props.text}</button>
   );
 };
 
 Button.propTypes = {
   text: PropTypes.string,
   styles: PropTypes.object,
+  click: PropTypes.func,
 };
 
 Button.defaultProps = {
   text: '',
   styles: {},
+  click: null,
 };
 
 export default Button;

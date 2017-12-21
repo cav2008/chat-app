@@ -14,7 +14,9 @@ const FormInput = (props) => {
   return (
     <div className="input">
       <label htmlFor="username" className="input__container">
-        <p className="input__label input__label--large input__label--no-margin">Please enter your username</p>
+        <p className="input__label input__label--large input__label--no-margin">
+          Please enter your username
+        </p>
         <input className={inputTextBoxClass} id="username" type="text" />
       </label>
     </div>
