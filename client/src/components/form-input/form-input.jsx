@@ -17,7 +17,8 @@ const FormInput = (props) => {
         <p className="input__label input__label--large input__label--no-margin">
           Please enter your username
         </p>
-        <input className={inputTextBoxClass} id="username" type="text" />
+        {/* ... is a es6 spread syntax, lets you put everything in input into the element. */}
+        <input className={inputTextBoxClass} id="username" type="text" {...props.input} />
       </label>
     </div>
   );
@@ -25,10 +26,12 @@ const FormInput = (props) => {
 
 FormInput.propTypes = {
   styles: PropTypes.object,
+  input: PropTypes.object,
 };
 
 FormInput.defaultProps = {
   styles: {},
+  input: null,
 };
 
 export default FormInput;

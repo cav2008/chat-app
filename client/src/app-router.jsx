@@ -7,7 +7,10 @@ import { devToolsEnhancer } from 'redux-devtools-extension';
 import { createStore, combineReducers } from 'redux';
 // Provider lets component use the store.
 import { Provider } from 'react-redux';
-// Our reducers.
+// Reducers.
+// Redux form reducer.
+import { reducer as reduxFormReducer } from 'redux-form';
+// Our reducer.
 import userReducer from './reducers/user/user';
 
 // Pages
@@ -20,6 +23,7 @@ import './styles/global.scss';
 // Combine all the reducers into one object.
 const allReducers = combineReducers({
   user: userReducer,
+  form: reduxFormReducer,
 });
 
 // Create the store using the reducers.

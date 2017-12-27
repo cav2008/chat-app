@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // Actions
 import { userSetUsername } from '../../actions/user/user';
 
-import Login from '../../pages/login/login';
+import LoginForm from '../../pages/login/login';
 
 /**
  * Maps the props that will be passed to the component to a state property.
@@ -15,6 +15,7 @@ import Login from '../../pages/login/login';
 function mapStateToProps(state) {
   return {
     username: state.user.username,
+    loginForm: state.form.login,
   };
 }
 
@@ -30,4 +31,4 @@ function matchDispatchToProps(dispatch) {
 }
 
 // Connects redux state data and actions as props to the component.
-export default connect(mapStateToProps, matchDispatchToProps)(Login);
+export default connect(mapStateToProps, matchDispatchToProps)(LoginForm);
