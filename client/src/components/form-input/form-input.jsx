@@ -5,22 +5,24 @@ import cx from 'classnames';
 import './form-input.scss';
 
 const FormInput = (props) => {
+  const inputContainerClass = cx(
+    'input__container',
+    { 'input__container--short-width': props.styles.shortWidth },
+    { 'input__container--inline-block': props.styles.inlineBlock },
+  );
+
   const inputTextBoxClass = cx(
     'input__textbox',
     'input__textbox--extra-margin',
     { 'input__textbox--center': props.styles.center },
+    { 'input__textbox--no-margin': props.styles.noMargin },
   );
 
   return (
-    <div className="input">
-      <label htmlFor="username" className="input__container">
-        <p className="input__label input__label--large input__label--no-margin">
-          Please enter your username
-        </p>
-        {/* ... is a es6 spread syntax, lets you put everything in input into the element. */}
-        <input className={inputTextBoxClass} id="username" type="text" {...props.input} />
-      </label>
-    </div>
+    <label htmlFor="input" className={inputContainerClass}>
+      {/* ... is a es6 spread syntax, lets you put everything in input into the element. */}
+      <input className={inputTextBoxClass} id="input" type="text" {...props.input} />
+    </label>
   );
 };
 

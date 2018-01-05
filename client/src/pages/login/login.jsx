@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
-import LoginInput from '../../components/form-input/form-input';
+import FormInput from '../../components/form-input/form-input';
 import Button from '../../components/button/button';
 
 import './login.scss';
@@ -23,8 +23,11 @@ const Login = (props) => {
   return (
     <div>
       <div className="login-container">
+        <p className="login__label login__label--large login__label--no-margin">
+          Please enter your username
+        </p>
         {/* React Form passing it the styles and component you want to use. */}
-        <Field name="usernameInput" component={LoginInput} styles={{ center: true }} />
+        <Field name="usernameInput" component={FormInput} styles={{ center: true }} />
         <Button text="Enter chat" click={updateUsername} />
       </div>
     </div>

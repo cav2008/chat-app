@@ -4,16 +4,12 @@
   display: block;
 }
 
-.input__label {
-  @include regularParagraphText;
+.input__container--short-width {
+  width: 70%;
 }
 
-.input__label--no-margin {
-  margin: 0;
-}
-
-.input__label--large {
-  font-size: 32px;
+.input__container--inline-block {
+  display: inline-block;
 }
 
 .input__textbox {
@@ -34,4 +30,8 @@
 
 .input__textbox--extra-margin {
   margin: 20px 0;
+}
+
+.input__textbox--no-margin {
+  margin: 0;
 }
