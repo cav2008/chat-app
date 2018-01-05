@@ -97,6 +97,10 @@ class Server {
       console.log('--- Socket connected ---');
 
       this.io.emit('test', 'hello this is a test connection message.');
+
+      socket.on('test send', (msg) => {
+        console.log('test send: ' + msg);
+      });
     });
   }
 

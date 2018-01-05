@@ -8,7 +8,7 @@ import './message-input.scss';
 
 const MessageInput = (props) => {
   const sendMessage = () => {
-    console.log(props.socket);
+    props.socket.emit('test send', 'testing sending');
   };
 
   return (
