@@ -9,3 +9,15 @@
   padding: 60px;
   text-align: center;
 }
+
+.login__label {
+  @include regularParagraphText;
+}
+
+.login__label--no-margin {
+  margin: 0;
+}
+
+.login__label--large {
+  font-size: 32px;
+}

@@ -13,6 +13,7 @@ import http from 'http';
 import path from 'path';
 import WebpackMiddleware from './middleware/webpack-middleware/webpack-middleware';
 // import { ROOT_DIR, PUBLIC_DIR } from './config/config';
+import socketIO from 'socket.io';
 
 /**
  * Main Server class listening to port 8000.
@@ -35,6 +36,7 @@ class Server {
     this.getBuildType();
     this.makeApp();
     this.makeServer();
+    this.makeWebSocket();
     this.listen();
     this.fileServe();
   }
@@ -63,17 +65,43 @@ class Server {
   }
 
    // We break down the contructor into different methods because it can get large later on.
+  /**
+   * Creates the express server.
+   */
   makeApp() {
     this.app = express();
   }
 
+  /**
+   * Uses the express server and creates a http server.
+   */
   makeServer() {
     this.server = http.Server(this.app);
   }
 
+  /**
+   * Uses the http server to create a websocket.
+   */
+  makeWebSocket() {
+    this.io = socketIO(this.server);
+  }
+
+  /**
+   * Server listens to port localhost:8000.
+   */
   listen() {
-    console.log('listening on localhost:8000');
+    console.log('--- Listening on localhost:8000 ---');
     this.server.listen(8000);
+
+    this.io.on('connection', (socket) => {
+      console.log('--- Socket connected ---');
+
+      // Listen to messages from clients.
+      socket.on('client message', (msg) => {
+        // Broadcast the message back to all the clients.
+        this.io.emit('client message broadcast', msg);
+      });
+    });
   }
 
   /**
@@ -106,5 +134,5 @@ class Server {
   }
 }
 
-// Call createServer static method
+// Call createServer static method.
 Server.createServer();

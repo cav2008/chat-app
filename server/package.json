@@ -23,6 +23,7 @@
     "webpack-hot-middleware": "^2.20.0"
   },
   "dependencies": {
-    "babel-loader": "^7.1.2"
+    "babel-loader": "^7.1.2",
+    "socket.io": "^2.0.4"
   }
 }
