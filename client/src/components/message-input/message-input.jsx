@@ -7,8 +7,18 @@ import Button from '../button/button';
 import './message-input.scss';
 
 const MessageInput = (props) => {
+  /**
+   * Sends the message to the server using the data stored in redux-form store.
+   */
   const sendMessage = () => {
-    props.socket.emit('test send', 'testing sending');
+    if (props.chat.values) {
+      const clientMessage = {
+        username: props.username,
+        message: props.chat.values.messageInput,
+      };
+
+      props.socket.emit('client message', clientMessage);
+    }
   };
 
   return (
@@ -25,6 +35,12 @@ const MessageInput = (props) => {
 
 MessageInput.propTypes = {
   socket: PropTypes.object.isRequired,
+  username: PropTypes.string.isRequired,
+  chat: PropTypes.object,
+};
+
+MessageInput.defaultProps = {
+  chat: null,
 };
 
 const MessageInputForm = reduxForm({

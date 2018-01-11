@@ -1,5 +1,4 @@
 // Redux
-import { bindActionCreator } from 'redux';
 import { connect } from 'react-redux';
 // Actions
 
@@ -12,10 +11,4 @@ function mapStateToProps(state) {
   };
 }
 
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators({
-
-  }, dispatch);
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(Chat);
+export default connect(mapStateToProps)(Chat);

@@ -96,10 +96,10 @@ class Server {
     this.io.on('connection', (socket) => {
       console.log('--- Socket connected ---');
 
-      this.io.emit('test', 'hello this is a test connection message.');
-
-      socket.on('test send', (msg) => {
-        console.log('test send: ' + msg);
+      // Listen to messages from clients.
+      socket.on('client message', (msg) => {
+        // Broadcast the message back to all the clients.
+        this.io.emit('client message broadcast', msg);
       });
     });
   }

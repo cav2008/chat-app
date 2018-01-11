@@ -14,7 +14,8 @@ import { reducer as reduxFormReducer } from 'redux-form';
 import userReducer from './reducers/user/user';
 
 // Pages
-import Chat from './pages/chat/chat';
+// import Chat from './pages/chat/chat';
+import ChatContainer from './containers/chat/chat';
 import LoginContainer from './containers/login/login';
 
 // Styles
@@ -37,7 +38,7 @@ const AppRouter = () => (
     <HashRouter>
       <div className="page">
         <Route exact path="/" component={LoginContainer} />
-        <Route path="/chat" component={Chat} />
+        <Route path="/chat" component={ChatContainer} />
       </div>
     </HashRouter>
   </Provider>
