@@ -18,10 +18,23 @@ const FormInput = (props) => {
     { 'input__textbox--no-margin': props.styles.noMargin },
   );
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      props.callback();
+    }
+  };
+
   return (
     <label htmlFor="input" className={inputContainerClass}>
       {/* ... is a es6 spread syntax, lets you put everything in input into the element. */}
-      <input className={inputTextBoxClass} id="input" type="text" {...props.input} />
+      <input
+        className={inputTextBoxClass}
+        id="input"
+        type="text"
+        onKeyPress={handleKeyPress}
+        autoComplete="off"
+        {...props.input}
+      />
     </label>
   );
 };
@@ -29,11 +42,13 @@ const FormInput = (props) => {
 FormInput.propTypes = {
   styles: PropTypes.object,
   input: PropTypes.object,
+  callback: PropTypes.func,
 };
 
 FormInput.defaultProps = {
   styles: {},
   input: null,
+  callback: {},
 };
 
 export default FormInput;

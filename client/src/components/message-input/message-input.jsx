@@ -30,6 +30,7 @@ const MessageInput = (props) => {
         name="messageInput"
         component={FormInput}
         styles={{ inlineBlock: true, noMargin: true, shortWidth: true }}
+        callback={sendMessage}
       />
       <Button text="Send" styles={{ floatRight: true }} click={sendMessage} />
     </div>
