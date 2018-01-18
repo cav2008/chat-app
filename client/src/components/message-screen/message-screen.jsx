@@ -50,6 +50,3 @@ export default class MessageScreen extends React.Component {
 MessageScreen.propTypes = {
   socket: PropTypes.object.isRequired,
 };
-
-MessageScreen.defaultProps = {
-};

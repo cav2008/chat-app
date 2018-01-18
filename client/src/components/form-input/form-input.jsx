@@ -19,6 +19,8 @@ const FormInput = (props) => {
   );
 
   const handleKeyPress = (e) => {
+    if (!props.callback) return;
+
     if (e.key === 'Enter') {
       props.callback();
     }
@@ -48,7 +50,7 @@ FormInput.propTypes = {
 FormInput.defaultProps = {
   styles: {},
   input: null,
-  callback: {},
+  callback: null,
 };
 
 export default FormInput;
