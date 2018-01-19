@@ -19,7 +19,7 @@ export default class MessageScreen extends React.Component {
    * Listen to messages sent by the server socket.
    */
   createMessageListener() {
-    this.props.socket.on('client message broadcast', (msg) => {
+    this.props.socket.on('message', (msg) => {
       // Using the es6 spread syntax to save state.messages.
       // We can't use this.state.messages.push(msg) because pass the array length value.
       this.setState({ messages: [...this.state.messages, msg] });

@@ -97,9 +97,9 @@ class Server {
       console.log('--- Socket connected ---');
 
       // Listen to messages from clients.
-      socket.on('client message', (msg) => {
+      socket.on('message', (msg) => {
         // Broadcast the message back to all the clients.
-        this.io.emit('client message broadcast', msg);
+        this.io.send(msg);
       });
     });
   }

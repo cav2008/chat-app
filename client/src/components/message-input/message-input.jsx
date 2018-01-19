@@ -17,7 +17,7 @@ const MessageInput = (props) => {
         message: props.chat.values.messageInput,
       };
 
-      props.socket.emit('client message', clientMessage);
+      props.socket.send(clientMessage);
 
       // Reset fields. Prop comes from reduxField.
       props.reset();
