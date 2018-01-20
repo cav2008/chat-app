@@ -10,6 +10,8 @@ export default class Chat extends React.Component {
   componentWillMount() {
     // Create socket connection.
     this.socket = socketio();
+
+    this.socket.emit('onConnect', this.props.username);
   }
 
   render() {

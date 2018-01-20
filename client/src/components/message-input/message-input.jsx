@@ -13,6 +13,7 @@ const MessageInput = (props) => {
   const sendMessage = () => {
     if (props.chat.values) {
       const clientMessage = {
+        type: 'chat',
         username: props.username,
         message: props.chat.values.messageInput,
       };

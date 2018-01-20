@@ -31,9 +31,15 @@ export default class MessageScreen extends React.Component {
    * @return {Array} Array of JSX elements.
    */
   createMessages() {
-    return this.state.messages.map((message, index) => (
-      <p key={index}><span>{message.username}</span>: {message.message}</p>
-    ));
+    return this.state.messages.map((message, index) => {
+      if (message.type === 'chat') {
+        return <p key={index}><span>{message.username}</span>: {message.message}</p>;
+      }
+
+      const announcement = message.type === 'enter' ? `${message.username} entered the chat` : `${message.username} left the chat`;
+
+      return <p key={index}>--- {announcement} ---</p>;
+    });
   }
 
   render() {

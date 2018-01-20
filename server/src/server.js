@@ -37,6 +37,7 @@ class Server {
     this.makeApp();
     this.makeServer();
     this.makeWebSocket();
+    this.createUserList();
     this.listen();
     this.fileServe();
   }
@@ -87,6 +88,13 @@ class Server {
   }
 
   /**
+   * Creating the user list array.
+   */
+  createUserList() {
+    this.userList = [];
+  }
+
+  /**
    * Server listens to port localhost:8000.
    */
   listen() {
@@ -96,10 +104,30 @@ class Server {
     this.io.on('connection', (socket) => {
       console.log('--- Socket connected ---');
 
-      // Listen to messages from clients.
+      // Add user to user list when they connect.
+      socket.on('onConnect', (user) => {
+        this.userList.push({id: socket.id, username: user});
+
+        this.io.send({
+          type: 'enter',
+          username: user,
+        });
+      });
+
+      // Listen to send() messages from clients and broadcast back to everyone else.
       socket.on('message', (msg) => {
-        // Broadcast the message back to all the clients.
         this.io.send(msg);
+      });
+
+      socket.on('disconnect', (reason) => {
+        if (this.userList.length > 0) {
+          this.io.send({
+            type: 'exit',
+            username: this.userList.filter(user => user.id === socket.id)[0].username,
+          });
+          // Delete disconnected user from the user list.
+          this.userList.splice(this.userList.findIndex((user) => user.id === socket.id), 1);
+        }
       });
     });
   }
