@@ -12,13 +12,7 @@ const MessageInput = (props) => {
    */
   const sendMessage = () => {
     if (props.chat.values) {
-      const clientMessage = {
-        type: 'chat',
-        username: props.username,
-        message: props.chat.values.messageInput,
-      };
-
-      props.socket.send(clientMessage);
+      props.socket.send(props.chat.values.messageInput);
 
       // Reset fields. Prop comes from reduxField.
       props.reset();
@@ -40,7 +34,6 @@ const MessageInput = (props) => {
 
 MessageInput.propTypes = {
   socket: PropTypes.object.isRequired,
-  username: PropTypes.string.isRequired,
   chat: PropTypes.object,
   // Reset form fields, from reduxForm
   reset: PropTypes.func,

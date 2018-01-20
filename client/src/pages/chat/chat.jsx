@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import socketio from 'socket.io-client';
 
+import getRandomColour from '../../helpers/colour-generator';
+
 // Components
 import MessageScreen from '../../components/message-screen/message-screen';
 import MessageInputForm from '../../components/message-input/message-input';
@@ -11,7 +13,10 @@ export default class Chat extends React.Component {
     // Create socket connection.
     this.socket = socketio();
 
-    this.socket.emit('onConnect', this.props.username);
+    this.socket.emit('onConnect', {
+      username: this.props.username,
+      colour: getRandomColour(),
+    });
   }
 
   render() {
@@ -20,7 +25,6 @@ export default class Chat extends React.Component {
         <MessageScreen socket={this.socket} />
         <MessageInputForm
           socket={this.socket}
-          username={this.props.username}
           chat={this.props.chat}
         />
       </div>
