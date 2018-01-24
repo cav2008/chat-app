@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -20,8 +21,26 @@ module.exports = {
         test: /\.scss$/,
         use: [
           { loader: 'style-loader' }, // create styles node from JS strings.
-          { loader: 'css-loader' }, // compiles .css files.
-          { loader: 'sass-loader' }, // compiles .scss files.
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true },
+          }, // compiles .css files.
+          { loader: 'resolve-url-loader' },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: true },
+          }, // compiles .scss files.
+        ],
+      },
+      {
+        test: /\.(ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
         ],
       },
     ],
@@ -35,5 +54,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
     }),
+    // Copy assets files. The fonts are already copied over in production however.
+    new CopyWebpackPlugin([{
+      from: 'assets/',
+      to: 'assets/',
+    }]),
   ],
 };

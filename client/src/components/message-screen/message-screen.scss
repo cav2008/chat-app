@@ -16,6 +16,10 @@
   overflow: scroll;
 }
 
+.message {
+  @include fontRegular();
+}
+
 .message--red {
   color: $red;
 }

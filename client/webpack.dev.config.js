@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -13,6 +14,7 @@ module.exports = {
   entry: {
     app: './index.jsx',
   },
+  // magic link to see what is in the virtual directory localhost:8000/webpack-dev-server
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
@@ -26,8 +28,26 @@ module.exports = {
         test: /\.scss$/,
         use: [
           { loader: 'style-loader' }, // create styles node from JS strings.
-          { loader: 'css-loader' }, // compiles .css files.
-          { loader: 'sass-loader' }, // compiles .scss files.
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true },
+          }, // compiles .css files. Need source map for resolve-url-loader.
+          { loader: 'resolve-url-loader' }, // Sass does not provide url rewriting therefore all files are relative path to where it is used in the js. This makes it that url() in sass is relative to it's own file.
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: true },
+          }, // compiles .scss files. Need source map for resolve-url-loader.
+        ],
+      },
+      {
+        test: /\.(ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
         ],
       },
     ],
@@ -44,5 +64,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
     }),
+    // We need to copy static assets to be able to use file-loader.
+    new CopyWebpackPlugin([{
+      from: 'assets/',
+      to: 'assets/',
+    }]),
   ],
 };
