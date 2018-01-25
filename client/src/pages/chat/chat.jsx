@@ -8,6 +8,8 @@ import getRandomColour from '../../helpers/colour-generator';
 import MessageScreen from '../../components/message-screen/message-screen';
 import MessageInputForm from '../../components/message-input/message-input';
 
+import './chat.scss';
+
 export default class Chat extends React.Component {
   componentWillMount() {
     // Create socket connection.
@@ -21,7 +23,7 @@ export default class Chat extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="message-container">
         <MessageScreen socket={this.socket} />
         <MessageInputForm
           socket={this.socket}
