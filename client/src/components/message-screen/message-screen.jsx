@@ -49,7 +49,8 @@ export default class MessageScreen extends React.Component {
         );
       }
 
-      const announcement = message.type === 'enter' ? `${message.username} entered the chat` : `${message.username} left the chat`;
+      const announcement = message.type === 'enter' ?
+        `${message.username} entered the chat` : `${message.username} left the chat`;
 
       return <p key={index} className="message message--black">--- {announcement} ---</p>;
     });
@@ -58,7 +59,12 @@ export default class MessageScreen extends React.Component {
   render() {
     return (
       <div className="message-screen">
-        <div ref={(element) => { this.messageScreenDisplay = element; }} className="message-screen__display">
+        {/* Using ref is like using document document.getElementById, but it instance has it's own
+        own reference. */}
+        <div
+          ref={(element) => { this.messageScreenDisplay = element; }}
+          className="message-screen__display"
+        >
           {this.createMessages()}
         </div>
       </div>
