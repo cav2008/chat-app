@@ -23,7 +23,16 @@ export default class MessageScreen extends React.Component {
       // Using the es6 spread syntax to save state.messages.
       // We can't use this.state.messages.push(msg) because pass the array length value.
       this.setState({ messages: [...this.state.messages, msg] });
+
+      this.scrollToBottomOfMessages();
     });
+  }
+
+  /**
+   * Auto scroll to the bottom of the message display screen.
+   */
+  scrollToBottomOfMessages() {
+    this.messageScreenDisplay.scrollTop = this.messageScreenDisplay.scrollHeight;
   }
 
   /**
@@ -49,7 +58,7 @@ export default class MessageScreen extends React.Component {
   render() {
     return (
       <div className="message-screen">
-        <div className="message-screen__display">
+        <div ref={(element) => { this.messageScreenDisplay = element; }} className="message-screen__display">
           {this.createMessages()}
         </div>
       </div>
