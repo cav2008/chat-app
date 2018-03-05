@@ -8,8 +8,8 @@ import Button from './button';
 const spyClickCallback = sinon.spy();
 
 // Create test component.
-const customButton = shallow(<Button text="click me" click={spyClickCallback} />);
+const comp = shallow(<Button text="click me" click={spyClickCallback} />);
 
 test('should mount', () => {
-  expect(customButton.find('button')).to.have.length(1);
+  expect(comp.find('button')).to.have.length(1);
 });

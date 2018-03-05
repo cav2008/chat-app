@@ -6,7 +6,7 @@ import getRandomColour from '../../helpers/colour-generator';
 
 // Components
 import MessageScreen from '../../components/message-screen/message-screen';
-import MessageInputForm from '../../components/message-input/message-input';
+import MessageInputForm from '../../components/message-input/message-input-form';
 
 import './chat.scss';
 

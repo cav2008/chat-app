@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
+import { Field } from 'redux-form';
 import FormInput from '../form-input/form-input';
 import Button from '../button/button';
 
@@ -41,11 +41,7 @@ MessageInput.propTypes = {
 
 MessageInput.defaultProps = {
   chat: null,
-  reset: {},
+  reset: null,
 };
 
-const MessageInputForm = reduxForm({
-  form: 'chat',
-})(MessageInput);
-
-export default MessageInputForm;
+export default MessageInput;
