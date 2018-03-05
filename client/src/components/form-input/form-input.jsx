@@ -19,9 +19,7 @@ const FormInput = (props) => {
   );
 
   const handleKeyPress = (e) => {
-    if (!props.callback) return;
-
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && props.callback) {
       props.callback();
     }
   };
