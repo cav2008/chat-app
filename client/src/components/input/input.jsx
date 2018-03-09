@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import './form-input.scss';
+import './input.scss';
 
-const FormInput = (props) => {
+const Input = (props) => {
   const inputContainerClass = cx(
     'input__container',
     { 'input__container--short-width': props.styles.shortWidth },
@@ -39,16 +39,16 @@ const FormInput = (props) => {
   );
 };
 
-FormInput.propTypes = {
+Input.propTypes = {
   styles: PropTypes.object,
   input: PropTypes.object,
   callback: PropTypes.func,
 };
 
-FormInput.defaultProps = {
+Input.defaultProps = {
   styles: {},
   input: null,
   callback: null,
 };
 
-export default FormInput;
+export default Input;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
-import FormInput from '../../components/form-input/form-input';
+import Input from '../../components/input/input';
 import Button from '../../components/button/button';
 
 import './login.scss';
@@ -27,7 +27,7 @@ const Login = (props) => {
           Please enter your username
         </p>
         {/* React Form passing it the styles and component you want to use. */}
-        <Field name="usernameInput" component={FormInput} styles={{ center: true }} />
+        <Field name="usernameInput" component={Input} styles={{ center: true }} />
         <Button text="Enter chat" click={updateUsername} />
       </div>
     </div>

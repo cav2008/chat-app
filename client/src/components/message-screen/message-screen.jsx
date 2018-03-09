@@ -43,7 +43,7 @@ export default class MessageScreen extends React.Component {
     return this.state.messages.map((message, index) => {
       if (message.type === 'chat') {
         return (
-          <p key={index} className={`message message--${message.colour}`}>
+          <p key={index} className={`message message-chat message--${message.colour}`}>
             <strong>{`(${message.username})`}</strong>: {message.message}
           </p>
         );
@@ -52,7 +52,14 @@ export default class MessageScreen extends React.Component {
       const announcement = message.type === 'enter' ?
         `${message.username} entered the chat` : `${message.username} left the chat`;
 
-      return <p key={index} className="message message--black">--- {announcement} ---</p>;
+      return (
+        <p
+          key={index}
+          className="message message-announcement message--black"
+        >
+          --- {announcement} ---
+        </p>
+      );
     });
   }
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage --watch",
     "start": "webpack-dev-server --config webpack.dev.config.js --port 8000 --progress --colors --open --hot",
     "build": "webpack -p --config webpack.prod.config.js --progress --colors"
   },
