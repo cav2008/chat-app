@@ -11,28 +11,39 @@ export default class MessageScreen extends React.Component {
     this.state = {
       messages: [],
     };
+  }
 
-    this.createMessageListener();
+  componentDidMount() {
+    this.createMessageListener(this.props.socket, this.scrollToBottomOfMessages.bind(this));
   }
 
   /**
    * Listen to messages sent by the server socket.
    */
-  createMessageListener() {
-    this.props.socket.on('message', (msg) => {
+  createMessageListener(socketListener, callBack) {
+    socketListener.on('message', (msg) => {
       // Using the es6 spread syntax to save state.messages.
       // We can't use this.state.messages.push(msg) because pass the array length value.
       this.setState({ messages: [...this.state.messages, msg] });
 
-      this.scrollToBottomOfMessages();
+      const { scrollHeight } = this.messageScreenDisplay;
+      callBack(scrollHeight);
     });
   }
 
   /**
    * Auto scroll to the bottom of the message display screen.
    */
-  scrollToBottomOfMessages() {
-    this.messageScreenDisplay.scrollTop = this.messageScreenDisplay.scrollHeight;
+  scrollToBottomOfMessages(scrollHeight) {
+    this.messageScreenDisplay.scrollTop = scrollHeight;
+  }
+
+  /**
+   * Used to save the element reference.
+   * @param {Object} ref html reference object.
+   */
+  handleSetRef(ref) {
+    this.messageScreenDisplay = ref;
   }
 
   /**
@@ -69,7 +80,7 @@ export default class MessageScreen extends React.Component {
         {/* Using ref is like using document document.getElementById, but it instance has it's own
         own reference. */}
         <div
-          ref={(element) => { this.messageScreenDisplay = element; }}
+          ref={this.handleSetRef.bind(this)}
           className="message-screen__display"
         >
           {this.createMessages()}
