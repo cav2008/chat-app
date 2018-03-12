@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // Actions
 import { userSetUsername } from '../../actions/user/user';
 
-import LoginForm from '../../pages/login/login';
+import LoginForm from '../../pages/login/login-form';
 
 /**
  * Maps the props that will be passed to the component to a state property.
